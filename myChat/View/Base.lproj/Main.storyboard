@@ -95,6 +95,9 @@
                                 <state key="normal" title="Log In">
                                     <color key="titleColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="logInPressed:" destination="98Y-Ha-in0" eventType="touchUpInside" id="Tzb-bb-Hoq"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enterPassword" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sed-Yz-qv1">
                                 <rect key="frame" x="16" y="212" width="343" height="30"/>
@@ -126,6 +129,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Log In" id="BRs-gd-Bg8"/>
                     <connections>
+                        <outlet property="emailTextField" destination="RKL-eL-Wlp" id="Xfj-89-sqK"/>
+                        <outlet property="passwordTextField" destination="Sed-Yz-qv1" id="BZi-aY-EJg"/>
                         <segue destination="IzY-U7-wLX" kind="show" identifier="goToChat" id="gpl-qH-duA"/>
                     </connections>
                 </viewController>
@@ -190,8 +195,17 @@
                         <viewLayoutGuide key="safeArea" id="EXg-mw-U7a"/>
                     </view>
                     <navigationItem key="navigationItem" title="myChat" id="b8S-FU-CZj">
-                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="OLM-Pk-3RS"/>
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="OLM-Pk-3RS">
+                            <connections>
+                                <action selector="logOutPressed:" destination="IzY-U7-wLX" id="dg6-Aa-k1H"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="messageTableView" destination="CfG-5o-7Rl" id="7PD-W1-8gz"/>
+                        <outlet property="messageTextField" destination="ix5-0X-Mhq" id="kT2-ta-oJa"/>
+                        <outlet property="sendButton" destination="PzA-00-n01" id="nvK-Lp-BYZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ipk-6i-BYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -296,6 +310,6 @@
         <image name="photo1" width="202" height="320"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zrC-K4-P6E"/>
+        <segue reference="gpl-qH-duA"/>
     </inferredMetricsTieBreakers>
 </document>
