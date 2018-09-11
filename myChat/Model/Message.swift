@@ -2,8 +2,13 @@
 //  Message.swift
 //  myChat
 //
-//  Created by ErnestG on 05.09.2018.
+//  Created by ErnestG on 11.09.2018.
 //  Copyright © 2018 ErnestG. All rights reserved.
 //
 
-import Foundation
+class Message {
+    
+    var sender: String = ""
+    var messageBody: String = ""
+    
+}
