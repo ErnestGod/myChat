@@ -13,6 +13,8 @@
 		962A33BC21407B640032AAC6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 962A33BB21407B640032AAC6 /* GoogleService-Info.plist */; };
 		962A33C221407C5D0032AAC6 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962A33C121407C5D0032AAC6 /* Message.swift */; };
 		962A33D321408F030032AAC6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 962A33D221408F030032AAC6 /* Images.xcassets */; };
+		96C3645221472DCB005A3430 /* CustomMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C3645021472DCB005A3430 /* CustomMessageCell.swift */; };
+		96C3645321472DCB005A3430 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96C3645121472DCB005A3430 /* MessageCell.xib */; };
 		96F271B22143F9E100C5E32C /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F271B12143F9E100C5E32C /* LogInViewController.swift */; };
 		96F271B42143F9FD00C5E32C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F271B32143F9FD00C5E32C /* ChatViewController.swift */; };
 		96F271B62143FA1500C5E32C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F271B52143FA1500C5E32C /* RegisterViewController.swift */; };
@@ -32,6 +34,8 @@
 		962A33C121407C5D0032AAC6 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		962A33D221408F030032AAC6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		967F9E3A21442FE400172F10 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96C3645021472DCB005A3430 /* CustomMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageCell.swift; sourceTree = "<group>"; };
+		96C3645121472DCB005A3430 /* MessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
 		96F271B12143F9E100C5E32C /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		96F271B32143F9FD00C5E32C /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		96F271B52143FA1500C5E32C /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 			children = (
 				962A33B121407ADA0032AAC6 /* LaunchScreen.storyboard */,
 				962A33A921407AD90032AAC6 /* Main.storyboard */,
+				96C3644B214727D1005A3430 /* Custom Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -124,6 +129,15 @@
 				96F271B72143FA3000C5E32C /* WelcomeViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		96C3644B214727D1005A3430 /* Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				96C3645021472DCB005A3430 /* CustomMessageCell.swift */,
+				96C3645121472DCB005A3430 /* MessageCell.xib */,
+			);
+			path = "Custom Cell";
 			sourceTree = "<group>";
 		};
 		A64D5A2D810282EC76A4FE4F /* Pods */ = {
@@ -195,6 +209,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96C3645321472DCB005A3430 /* MessageCell.xib in Resources */,
 				962A33B321407ADA0032AAC6 /* LaunchScreen.storyboard in Resources */,
 				962A33BC21407B640032AAC6 /* GoogleService-Info.plist in Resources */,
 				962A33D321408F030032AAC6 /* Images.xcassets in Resources */,
@@ -264,6 +279,7 @@
 				96F271B82143FA3000C5E32C /* WelcomeViewController.swift in Sources */,
 				96F271B42143F9FD00C5E32C /* ChatViewController.swift in Sources */,
 				962A33A621407AD90032AAC6 /* AppDelegate.swift in Sources */,
+				96C3645221472DCB005A3430 /* CustomMessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
