@@ -7,17 +7,23 @@
 //
 
 import UIKit
+import FirebaseDatabase
 import Firebase
+
+/***********************/
+/*  Example to log in: */
+/*  email: a@b.com     */
+/*  password: 123456   */
+/***********************/
 
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
+    var messageArray : [Message] = [Message]()
     
-    @IBOutlet weak var heightField: NSLayoutConstraint!
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var heightField: NSLayoutConstraint!
     @IBOutlet weak var messageTextField: UITextField!
     @IBOutlet weak var messageTableView: UITableView!
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +40,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         configureTableView()
         
-        
+        retrieveMessages()
         
     }
     
@@ -44,9 +50,14 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "customMessageCell", for: indexPath) as! CustomMessageCell
         
-        let messageArray = ["First message", "Second message", "Third message"]
         
-        cell.messageBody.text = messageArray[indexPath.row]
+        cell.messageBody.text = messageArray[indexPath.row].messageBody
+        cell.userName.text = messageArray[indexPath.row].sender
+        cell.avatarImageView.image = UIImage(named: "color-apple")
+        
+//        let messageArray = ["First message", "Second message", "Third message"]
+//
+//        cell.messageBody.text = messageArray[indexPath.row]
         
         return cell
         
@@ -54,7 +65,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 3
+        return messageArray.count
         
     }
     
@@ -88,6 +99,64 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             
         }
         
+    }
+    
+    //MARK: - Send & Receive from Firebase
+    
+    @IBAction func sendPressed(_ sender: Any) {
+        
+        messageTextField.endEditing(true)
+        messageTextField.isEnabled = false
+        sendButton.isEnabled = false
+        
+        
+        let messagesDatabase = Database.database().reference().child("messages")
+        
+        //        let childRef = messagesDatabase.childByAutoId()
+        //        let values = ["text": messageTextField.text!]
+        //        childRef.updateChildValues(values)
+        
+        let messageDictionary = ["Sender": Auth.auth().currentUser?.email, "MessageBody": messageTextField.text!]
+        
+        messagesDatabase.childByAutoId().setValue(messageDictionary) {
+            (error, reference) in
+            
+            if error != nil {
+                print(error!)
+            } else {
+                print("Message saved successfully!")
+                
+                self.messageTextField.isEnabled = true
+                self.sendButton.isEnabled = true
+                self.messageTextField.text = ""
+            }
+        }
+    }
+    
+    //MARK: - Retrieve message method
+    
+    func retrieveMessages() {
+        
+        let messageDB = Database.database().reference().child("messages")
+        
+        messageDB.observe(.childAdded, with: { (snapshot) in
+            
+            let snapshotValue = snapshot.value as! Dictionary<String,String>
+            
+            let text = snapshotValue["MessageBody"]!
+            let sender = snapshotValue["Sender"]!
+            
+            let messageR = Message()
+            messageR.messageBody = text
+            messageR.sender = sender
+            
+            self.messageArray.append(messageR)
+            
+            self.configureTableView()
+            
+            self.messageTableView.reloadData()
+            
+        })
         
     }
     

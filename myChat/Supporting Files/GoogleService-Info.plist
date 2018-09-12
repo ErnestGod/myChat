@@ -23,18 +23,18 @@
 	<key>STORAGE_BUCKET</key>
 	<string>mychat-b5dba.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:502909595992:ios:c20b9d3c4d72cbb5</string>
 	<key>DATABASE_URL</key>
-	<string>https://mychat-b5dba.firebaseio.com</string>
+	<string>https://mychat-b5dba.firebaseio.com/</string>
 </dict>
 </plist>
