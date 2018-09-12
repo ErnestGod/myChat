@@ -9,12 +9,19 @@
 import UIKit
 import FirebaseDatabase
 import Firebase
+import ChameleonFramework
 
 /***********************/
-/*  Example to log in: */
+/*  User to log in:    */
 /*  email: a@b.com     */
 /*  password: 123456   */
 /***********************/
+
+/*****************************/
+/*  Another user to log in:  */
+/*  email: b@c.com           */
+/*  password: 123456         */
+/*****************************/
 
 class ChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
@@ -42,9 +49,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         retrieveMessages()
         
+        messageTableView.separatorStyle = .none
+        
     }
     
-    //MARK: - TableView DataSource Method
+    //MARK: - TableView methods
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -55,9 +64,18 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.userName.text = messageArray[indexPath.row].sender
         cell.avatarImageView.image = UIImage(named: "color-apple")
         
-//        let messageArray = ["First message", "Second message", "Third message"]
-//
-//        cell.messageBody.text = messageArray[indexPath.row]
+        if cell.userName.text == Auth.auth().currentUser?.email as String? {
+            
+            //Message that I sent
+            cell.avatarImageView.backgroundColor = UIColor.flatMint()
+            cell.messageBackground.backgroundColor = UIColor.flatSkyBlue()
+            
+        } else {
+            
+            cell.avatarImageView.backgroundColor = UIColor.flatWatermelon()
+            cell.messageBackground.backgroundColor = UIColor.flatGray()
+            
+        }
         
         return cell
         
@@ -89,6 +107,7 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.view.layoutIfNeeded()
         }
         
+        
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -108,7 +127,6 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         messageTextField.endEditing(true)
         messageTextField.isEnabled = false
         sendButton.isEnabled = false
-        
         
         let messagesDatabase = Database.database().reference().child("messages")
         
